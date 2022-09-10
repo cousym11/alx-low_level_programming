@@ -1,38 +1,66 @@
 #include <stdio.h>
 
-
-
 /**
  *
- *   * main - Ommit some alphabet
+ *  * main - entry point
  *
- *     *
+ *   *
  *
- *       * Return: Always (Success)
+ *    * Return: alway returns 0
  *
- *         */
+ *    */
 
 int main(void)
 
 {
-	char c;
+	char a;
 
-
-
-	for (c = 'a'; c <= 'z'; c++)
-
+	for (a = 'a'; a <= 'z' ; a++)
 	{
+        	if (a == 'q' || a == 'e')
+        	{
+			continue;
+		}
+		putchar(a);
+		}
+	putchar('\n');
+	return (0);
 
-         if (c != 'e' && c != 'q')
-
-        {
-
-	putchar(c);
-	}
-
-	}
-
-	putchar('\n'rn (0);
-
-	return (0);		
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
