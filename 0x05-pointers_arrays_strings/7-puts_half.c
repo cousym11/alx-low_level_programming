@@ -1,10 +1,10 @@
 #include "main.h"
+#include "2-strlen.c"
 
 /**
- * puts_half - Prints half of a string
- * @str: The string to print
+ * puts_half - puts half of int
  *
- * Return: void
+ * @str: string to split
  */
 
 void puts_half(char *str)
@@ -16,13 +16,36 @@ void puts_half(char *str)
 	{
 		oE += 1;
 	}
-
 	for (i = (_strlen(str) + oE) / 2; i < _strlen(str); i++)
 	{
 		_putchar(str[i]);
 	}
 	_putchar('\n');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
