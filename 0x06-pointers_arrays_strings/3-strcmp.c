@@ -17,10 +17,12 @@ int _strcmp(char *s1, char *s2)
 	{
 		a++;
 	}
+
 	while (s2[b])
 	{
 		b++;
 	}
+
 	if (a <= b)
 	{
 		lim = a;
@@ -29,20 +31,25 @@ int _strcmp(char *s1, char *s2)
 	{
 		lim = b;
 	}
+
 	while (c <= lim)
 	{
-	if (s1[c] == s2[c])
+
+		if (s1[c] == s2[c])
 	{
 		c++;
-	continue;
+		continue;
 	}
 	else
 	{
-	r = s1[c] - s2[c];
-	break;
+
+		r = s1[c] - s2[c];
+		break;
 	}
+
 		c++;
 	}
+	
 	return (r);
 }
 
