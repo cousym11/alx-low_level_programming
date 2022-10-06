@@ -1,33 +1,44 @@
-Task 3
-
 #include "main.h"
 #include <stdlib.h>
 
 /**
- * array_range - Creates an array of integers ordered
- *               from min to max, inclusive.
- * @min: The first value of the array.
- * @max: The last value of the array.
+ * string_nconcat - Concatenates two strings using at
+ *                  most an inputted number of bytes.
+ * @s1: The first string.
+ * @s2: The second string.
+ * @n: The maximum number of bytes of s2 to concatenate to s1.
  *
- * Return: If min > max or the function fails - NULL.
- *         Otherwise - a pointer to the newly created array.
+ * Return: If the function fails - NULL.
+ *         Otherwise - a pointer to the concatenated space in memory.
  */
-int *array_range(int min, int max)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	int *array, index, size;
+	char *concat;
+	unsigned int len = n, index;
 
-	if (min > max)
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	for (index = 0; s1[index]; index++)
+		len++;
+
+	concat = malloc(sizeof(char) * (len + 1));
+
+	if (concat == NULL)
 		return (NULL);
 
-	size = max - min + 1;
+	len = 0;
 
-	array = malloc(sizeof(int) * size);
+	for (index = 0; s1[index]; index++)
+		concat[len++] = s1[index];
 
-	if (array == NULL)
-		return (NULL);
+	for (index = 0; s2[index] && index < n; index++)
+		concat[len++] = s2[index];
 
-	for (index = 0; index < size; index++)
-		array[index] = min++;
+	concat[len] = '\0';
 
-	return (array);
+	return (concat);
 }
