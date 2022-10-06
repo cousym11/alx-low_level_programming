@@ -1,60 +1,33 @@
+Task 3
+
 #include "main.h"
 #include <stdlib.h>
 
 /**
- * string_nconcat - ...
- * @s1: ...
- * @s2: ...
- * @n: ...
+ * array_range - Creates an array of integers ordered
+ *               from min to max, inclusive.
+ * @min: The first value of the array.
+ * @max: The last value of the array.
  *
- * Return: ...
+ * Return: If min > max or the function fails - NULL.
+ *         Otherwise - a pointer to the newly created array.
  */
-
-char *string_nconcat(char *s1, char *s2, unsigned int n)
-
+int *array_range(int min, int max)
 {
-	unsigned int i = 0, j = 0, k = 0, l = 0;
+	int *array, index, size;
 
-	char *str;
+	if (min > max)
+		return (NULL);
 
-	if (s1 == NULL)
-	s1 = "";
+	size = max - min + 1;
 
-	if (s2 == NULL)
-	s2 = "";
+	array = malloc(sizeof(int) * size);
 
-	while (s1[i])
-	i++;
+	if (array == NULL)
+		return (NULL);
 
-	while (s2[k])
-	k++;
+	for (index = 0; index < size; index++)
+		array[index] = min++;
 
-	if (n >= k)
-	l = i + k;
-
-	else
-	l = i + n;
-	str = malloc(sizeof(char) * l + 1);
-
-	if (str == NULL)
-
-	return (NULL);
-	k = 0;
-
-	while (j < l)
-{
-
-	if (j <= i)
-	str[j] = s1[j];
-
-	if (j >= i)
-{
-	str[j] = s2[k];
-	k++;
-}
-	j++;
-}
-	str[j] = '\0';
-
-	return (str);
+	return (array);
 }
