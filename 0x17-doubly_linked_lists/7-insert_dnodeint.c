@@ -1,53 +1,52 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index - inserts a node node at a given position
- * in a dlistint_t list.
- * @h: pointer to the list.
- * @idx: position to add the node.
- * @n: data for the new node.
- * Return: the address of the new node, or NULL if it failed
- **/
+ * insert_dnodeint_at_index - inserts node at index
+ * @h: head of node
+ * @idx: index to insert node
+ * @n: data for new node
+ * Return: list with inserted node
+ */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *aux_node = *h, *new_node;
-	unsigned int index, cont = 0;
+	unsigned int count = 1;
+	dlistint_t *temp = NULL, *new = NULL;
 
-	/* create node */
-	new_node = malloc(sizeof(dlistint_t));
-	if (new_node == NULL)
+	new = malloc(sizeof(dlistint_t));
+	if (new == NULL || h == NULL)
 		return (NULL);
-	new_node->n = n;
-
-	/* border case for insert at the beginning */
+	new->n = n;
+	temp = *h;
 	if (idx == 0)
 	{
-		new_node->prev = NULL;
-		new_node->next = *h;
-		if (*h)
-			(*h)->prev = new_node;
-		*h = new_node;
-		return (*h);
+		*h = new;
+		new->next = temp;
+		new->prev = NULL;
+		temp->prev = new;
+		return (new);
 	}
-
-	/* search of position to insert */
-	index = idx - 1;
-	while (aux_node && cont != index)
+	while (temp->next != NULL)
 	{
-		cont++;
-		aux_node = aux_node->next;
+		if (count == idx) /* found back */
+		{
+			new->prev = temp; /* current prev to back link */
+			new->next = temp->next; /* current next to front link*/
+			temp->next = new; /* back next link */
+			new->next->prev = new; /* from prev link */
+		}
+		temp = temp->next;
+		count++;
 	}
-
-	/* general case */
-	if (cont == index && aux_node)
+	if (count == idx) /* end of DLL */
 	{
-		new_node->prev = aux_node;
-		new_node->next = aux_node->next;
-		if (aux_node->next)
-			aux_node->next->prev = new_node;
-		aux_node->next = new_node;
-		return (new_node);
+		new->prev = temp; /* current prev to back link */
+		new->next = NULL; /* current next to NULL*/
+		temp->next = new; /* back next link */
 	}
-	free(new_node);
-	return (NULL);
+	if (count < idx)
+	{
+		free(new);
+		return (NULL);
+	}
+	return (new);
 }
